@@ -1,0 +1,62 @@
+﻿<script src="assets/scripts/jquery-1.12.3.js"></script>
+<script src="assets/scripts/bootstrap.min.js"></script>
+<script src="assets/scripts/my_scripts.js"></script>
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="assets/css/bootstrap-theme.min.css" rel="stylesheet" />
+
+<script>
+    $(document).ready(function () {
+        $("#btn_reg").click(function () {
+            var fullname = $("#pe_fullname").val();
+            var username = $("#pe_username").val();
+            var password = $("#pe_password").val();
+
+            $.post(URL_SERVER + "registration.php", {
+                fullname: fullname,
+                username: username,
+                password: password
+            }).done(function (data) {
+                if (data == '0') {
+                    alert('Success..');
+                } else {
+                    alert(data);
+                }
+            });
+        });
+    });
+</script>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <table class="table">
+            <tr>
+                <th>Full Name</th>
+                <th>:</th>
+                <th>
+                    <input type="text" id="pe_fullname" class="form-control" placeholder="Write your full name here." />
+                </th>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <th>:</th>
+                <th>
+                    <input type="text" id="pe_username" />
+                </th>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <th>:</th>
+                <th>
+                    <input type="text" id="pe_password" />
+                </th>
+            </tr>
+            <tr>
+                <th colspan="3">
+                    <button type="button" id="btn_reg" class="btn btn-info">Register</button>
+                </th>
+            </tr>
+        </table>
+
+    </div>
+</div>

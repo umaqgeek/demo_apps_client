@@ -1,0 +1,49 @@
+﻿<script src="assets/scripts/jquery-1.12.3.js"></script>
+<script src="assets/scripts/bootstrap.min.js"></script>
+<script src="assets/scripts/my_scripts.js"></script>
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="assets/css/bootstrap-theme.min.css" rel="stylesheet" />
+
+<script>
+    $(document).ready(function () {
+        var user = localStorage.getItem('username');
+        var pass = localStorage.getItem('password');
+        $("#view_user").html(user);
+        $("#view_pass").html(pass);
+
+        $("#btn_logout").click(function () {
+            localStorage.setItem("username", "");
+            localStorage.setItem("password", "");
+            location.href = 'index.html';
+        });
+
+        $("#btn_view").click(function () {
+            location.href = 'viewData.html';
+        });
+
+        $.post(URL_SERVER + "view_data.php", {
+        }).done(function (data) {
+            $("#papar_data").html(data);
+        });
+    });
+</script>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <center>
+
+            <p>
+                My username is <span id="view_user"></span> 
+                and my password is <span id="view_pass"></span>
+            </p>
+
+        </center>
+
+        <button id="btn_view" class="btn btn-info" type="button">View Data</button>
+        <button id="btn_logout" class="btn btn-info" type="button">Log Out</button>
+
+        <span id="papar_data"></span>
+
+    </div>
+</div>
